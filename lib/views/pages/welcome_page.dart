@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/views/widget_tree.dart';
+import 'package:my_app/views/widgets/hero_widget.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -7,16 +8,17 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Welcome')),
+      appBar: AppBar(
+        title: const Text('Welcome'),
+        automaticallyImplyLeading: false,
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(40.0),
-              child: Image.asset('assets/images/os.jpeg'),
-            ),
+            HeroWidget(),
             FilledButton(
               onPressed: () {
                 Navigator.pushReplacement(
