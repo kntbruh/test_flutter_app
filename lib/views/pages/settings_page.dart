@@ -31,6 +31,39 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           Text(usernameController.text),
+          ElevatedButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('first snackBar'),
+                  behavior: SnackBarBehavior.floating,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            },
+            child: (Text('open snackBar')),
+          ),
+          Divider(color: Colors.blueAccent),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Dialog'),
+                    content: Text('Dialog Content'),
+                    actions: [
+                      FilledButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text('close'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text('open dialog'),
+          ),
           DropdownButton(
             value: dropdownValue,
             items: [
