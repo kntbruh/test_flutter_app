@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/data/constants.dart';
 
 class HeroWidget extends StatelessWidget {
   const HeroWidget({super.key, required this.title});

@@ -6,17 +6,22 @@ late TextEditingController usernameController;
 late TextEditingController passwordController;
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.title});
+
+  final String title;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String usernameConfirm = '123';
+  String passwordConfirm = '123';
+
   @override
   void initState() {
-    usernameController = TextEditingController();
-    passwordController = TextEditingController();
+    usernameController = TextEditingController(text: '123');
+    passwordController = TextEditingController(text: '123');
     super.initState();
   }
 
@@ -33,50 +38,62 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            HeroWidget(title: 'Login'),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                labelText: 'Username',
-              ),
-              onEditingComplete: () {},
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                labelText: 'Password',
-              ),
-              onEditingComplete: () {},
-            ),
-            SizedBox(height: 20),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WidgetTree();
-                    },
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                HeroWidget(title: widget.title),
+                TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    labelText: 'Username',
                   ),
-                );
-              },
-              child: Text('Login'),
+                  onEditingComplete: () {},
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    labelText: 'Password',
+                  ),
+                  onEditingComplete: () {},
+                ),
+                SizedBox(height: 20),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                  onPressed: () {
+                    onLogin();
+                  },
+                  child: Text(widget.title),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void onLogin() {
+    if (usernameController.text == usernameConfirm &&
+        passwordController.text == passwordConfirm) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return WidgetTree();
+          },
+        ),
+        (route) => false,
+      );
+    }
   }
 }

@@ -14,50 +14,54 @@ class WelcomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            HeroWidget(title: 'welcome'),
-            Text(
-              'Flutter App',
-              style: TextStyle(fontSize: 30, letterSpacing: 12.0),
-            ),
-            SizedBox(height: 20),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WidgetTree();
-                    },
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                HeroWidget(title: 'welcome'),
+                Text(
+                  'Flutter App',
+                  style: TextStyle(fontSize: 30, letterSpacing: 12.0),
+                ),
+                SizedBox(height: 20),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
                   ),
-                );
-              },
-              child: Text('Sign Up'),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginPage();
-                    },
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginPage(title: 'Sign Up');
+                        },
+                      ),
+                    );
+                  },
+                  child: Text('Sign Up'),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
                   ),
-                );
-              },
-              child: Text('Login'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginPage(title: 'Login');
+                        },
+                      ),
+                    );
+                  },
+                  child: Text('Login'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
