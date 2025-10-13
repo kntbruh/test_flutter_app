@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/data/constants.dart';
 import 'package:my_app/data/notifier.dart';
 import 'package:my_app/views/pages/welcome_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'views/widget_tree.dart';
 
@@ -16,6 +18,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    initMode();
+    super.initState();
+  }
+
+  void initMode() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final bool? mode = prefs.getBool(KConstants.modeKey);
+
+    isDarkModeNotifier.value = mode ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(

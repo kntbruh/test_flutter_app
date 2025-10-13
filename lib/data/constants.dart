@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+class KConstants {
+  static const String modeKey = 'modeKey';
+}
+
 class KTextStyle {
   static const TextStyle titleText = TextStyle(
     fontSize: 18.0,
