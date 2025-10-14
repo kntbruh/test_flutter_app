@@ -4,8 +4,6 @@ import 'package:my_app/data/notifier.dart';
 import 'package:my_app/views/pages/welcome_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'views/widget_tree.dart';
-
 void main() {
   runApp(const MyApp());
 }
