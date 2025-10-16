@@ -34,47 +34,56 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                HeroWidget(title: widget.title),
-                TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    labelText: 'Username',
+            child: LayoutBuilder(
+              builder: (context, constrains) {
+                return FractionallySizedBox(
+                  widthFactor: widthScreen > 500 ? 0.6 : 1.0,
+                  child: Column(
+                    children: [
+                      HeroWidget(title: widget.title),
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          labelText: 'Username',
+                        ),
+                        onEditingComplete: () {},
+                      ),
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          labelText: 'Password',
+                        ),
+                        onEditingComplete: () {},
+                      ),
+                      SizedBox(height: 20),
+                      FilledButton(
+                        style: FilledButton.styleFrom(
+                          minimumSize: Size(double.infinity, 50),
+                        ),
+                        onPressed: () {
+                          onLogin();
+                        },
+                        child: Text(widget.title),
+                      ),
+                    ],
                   ),
-                  onEditingComplete: () {},
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    labelText: 'Password',
-                  ),
-                  onEditingComplete: () {},
-                ),
-                SizedBox(height: 20),
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
-                  ),
-                  onPressed: () {
-                    onLogin();
-                  },
-                  child: Text(widget.title),
-                ),
-              ],
+                );
+              },
             ),
           ),
         ),
