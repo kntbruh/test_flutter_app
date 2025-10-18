@@ -32,7 +32,7 @@ class HeroWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40.0),
                 child: Image.asset(
                   'assets/images/os.jpeg',
-                  color: Colors.blueGrey,
+                  color: Colors.white,
                   colorBlendMode: BlendMode.darken,
                 ),
               ),
@@ -40,7 +40,11 @@ class HeroWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.amber,
+            ),
           ),
         ],
       ),
